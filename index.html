@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lisan al-Gaib</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Intro Screen -->
+  <div id="intro-screen">
+    <div id="intro-text">
+        <span class="special-font">Un souffle venu du néant murmure ton nom…</span><br>
+        <span class="intro-accent">Clique pour entrer dans la vision.</span>
+      </div>
+  </div>
+
+  <!-- Sand Transition Overlay -->
+  <div id="sand-transition"></div>
+
+  <!-- Main Content -->
+  <div id="main-content" hidden>
+    <main>
+      <h1>LISAN AL-GAIB</h1>
+      <p class="subtitle">La voix venue d'ailleurs murmure aujourd'hui :</p>
+      <div class="revelation-container">
+        <p id="revelation" class="revelation"></p>
+      </div>
+      <button id="refresh">Obtenir une autre vision</button>
+    </main>
+    <footer>La prophétie ne ment jamais.</footer>
+    <div id="flash"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
