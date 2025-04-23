@@ -1,0 +1,210 @@
+:root {
+    --bg-dark: #0a0a0a;
+    --primary: #fdf6e3;
+    --accent: #c2a94d;
+    --vision-glow: rgba(194, 169, 77, 0.3);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+  }
+  
+  body {
+    font-family: 'Unbounded', sans-serif;
+    background: var(--bg-dark);
+    color: var(--primary);
+    height: 100vh;
+    overflow: hidden;
+    perspective: 1000px;
+  }
+  
+  /* 1. Intro Screen */
+  #intro-screen {
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at center, #111 0%, #000 80%);
+    display: flex; justify-content: center; align-items: center;
+    cursor: pointer;
+    animation: introFadeIn 1s ease-out;
+    z-index: 1000;
+  }
+  #intro-screen.fade-out {
+    animation: introFadeOut 0.8s ease-in forwards;
+  }
+  #intro-text {
+    text-align: center;
+    color: var(--accent);
+    font-size: 1.6rem;
+    line-height: 1.4;
+    opacity: 0;
+    animation: textFadeIn 1.5s 0.5s ease-out forwards;
+  }
+
+  .special-font {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+  
+  .intro-accent {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-style: italic;
+    opacity: 0;
+    animation: accentFadeIn 1.5s 1s ease-out forwards;
+  }
+  
+  @keyframes introFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes introFadeOut {
+    to { opacity: 0; transform: scale(0.95); }
+  }
+  @keyframes textFadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes accentFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 0.8; }
+  }
+  
+  /* 2. Sand transition effect */
+  #sand-transition {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 900;
+    overflow: hidden;
+  }
+  #sand-transition.active::before {
+    content: '';
+    position: absolute; top: -100%; left: 0;
+    width: 200%; height: 200%;
+    background-image:
+      radial-gradient(circle, rgba(194,169,77,0.4) 1px, transparent 1px);
+    background-size: 8px 8px;
+    animation: sandFall 1s ease-out forwards;
+  }
+  @keyframes sandFall {
+    to { transform: translateY(100%); opacity: 0; }
+  }
+  
+  /* 3. Main Content – plein écran & centré */
+  #main-content {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    background: radial-gradient(circle at center, #111 0%, #000 80%);
+    opacity: 0;
+  }
+  #main-content.fade-in {
+    animation: contentFadeIn 1s ease-out forwards;
+  }
+  
+  @keyframes contentFadeIn {
+    from { opacity: 0; filter: blur(4px); }
+    to   { opacity: 1; filter: blur(0); }
+  }
+  
+  main {
+    max-width: 600px;
+    padding: 2rem;
+  }
+  h1 {
+    font-size: 2.8rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--vision-glow);
+  }
+  .subtitle {
+    font-style: italic;
+    margin: 1rem 0;
+  }
+  .revelation-container {
+    margin: 2rem 0;
+    padding: 1rem;
+    border: 1px solid var(--accent);
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    backdrop-filter: blur(3px);
+  }
+  .revelation {
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: appearFromDepth 1.2s ease-out forwards;
+    user-select: text;
+  }
+  
+  button {
+    margin-top: 1rem;
+    padding: 0.7rem 1.5rem;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  button:hover {
+    background: var(--accent);
+    color: var(--bg-dark);
+    box-shadow: 0 0 15px var(--accent);
+  }
+  
+  footer {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    color: var(--accent);
+    pointer-events: none;
+  }
+  
+  /* Flash mystique */
+  #flash {
+    position: fixed; inset: 0;
+    background: radial-gradient(circle, #fff 10%, #f3e8c9 40%, #000 100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-out;
+    z-index: 1001;
+  }
+  #flash.active {
+    animation: flashMystic 1s ease-out forwards;
+  }
+  @keyframes flashMystic {
+    0%   { opacity: 1; filter: blur(0); }
+    50%  { filter: blur(10px); }
+    100% { opacity: 0; filter: blur(0); }
+  }
+  
+  /* Appear from depth */
+  @keyframes appearFromDepth {
+    0% {
+      opacity: 0;
+      transform: scale(0.7) translateZ(-500px);
+      filter: blur(6px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateZ(0);
+      filter: blur(0);
+    }
+  }
+  
+  /* Reappear from shadow */
+  @keyframes reappearFromShadow {
+    0%   { opacity: 0; transform: translateY(40px) scale(0.9); filter: blur(6px); }
+    50%  { opacity: 0.5; transform: translateY(10px) scale(1); filter: blur(2px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  }
+  .reappear {
+    animation: reappearFromShadow 2s ease-out forwards;
+  }
+  
